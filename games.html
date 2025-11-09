@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Directory - Plane's Unblocked Games</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use the Inter font and set a dark theme default -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .game-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5), 0 4px 6px -2px rgba(59, 130, 246, 0.05); /* Shadow with primary color glow */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6', // Tailwind blue-500
+                        'secondary': '#1f2937', // Tailwind gray-800
+                        'accent': '#facc15', // Tailwind yellow-400
+                    }
+                }
+            }
+        }
+
+        // --- CENTRALIZED LINK FOR THE FULL LIBRARY BUTTON ---
+        const FULL_LIBRARY_URL = 'https://sites.google.com/view/planemath/games';
+        // --------------------------------------------------
+        
+        const mockGames = [
+            { 
+                id: 1, 
+                title: 'Slope', 
+                description: 'Dodging obstacles, exploring the world of Slope.', 
+                category: 'Arcade', 
+                image: 'https://slopeonline.online/upload/cache/upload/imgs/slope-game-v1-f260x260.png',
+                url: 'https://sites.google.com/view/planemath/games/slope'
+            },
+            { 
+                id: 2, 
+                title: 'Five Nights At Freddys', 
+                description: 'Five Nights at Freddy\'s is a horror game where you survive against creepy animatronics by managing limited resources. The game’s story unfolds through hidden clues and eerie events at a haunted pizzeria.', 
+                category: 'Horror', 
+                image: 'https://upload.wikimedia.org/wikipedia/en/1/12/FNAF1logo.jpg',
+                url: 'https://sites.google.com/view/planemath/games/five-nights-at-freddys'
+            },
+            { 
+                id: 3, 
+                title: 'Raft Wars', 
+                description: 'Raft Wars is a fun, turn-based artillery game where you control a small character defending their treasure from greedy opponents using customized rafts and projectiles. The core gameplay revolves around accurately aiming and firing weapons to destroy your enemy\'s raft and knock them into the water.', 
+                category: 'Strategy',
+                image: 'https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=314,height=314,fit=cover,f=auto/d2a3bbd1bb8aea542835f4f8a353d388/raft-wars.png',
+                url: 'https://sites.google.com/view/planemath/games/raft-wars'
+            },
+            { 
+                id: 4, 
+                title: 'Among Us', 
+                description: 'Among Us is a social deduction game where crewmates work together to complete tasks while secretly identifying the Impostor, whose goal is to covertly sabotage the ship and eliminate the crew. The main excitement comes from emergency meetings, where players must use persuasion and logic to vote off the suspected Impostor before it\'s too late.', 
+                category: 'Space', 
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJwI44RIxtDJZJKG3YSrDga-TGrSDJReO8eQ&s',
+                url: 'https://sites.google.com/view/planemath/games/among-us'
+            },
+            // The games Pixel Runner 2, World Soccer Cup, and Sudoku Master have been removed.
+        ];
+
+        // Renders all games since search is removed
+        function renderGames(gamesToRender) {
+            const container = document.getElementById('game-grid');
+            if (!container) return;
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            const games = gamesToRender || mockGames;
+
+            if (games.length === 0) {
+                container.innerHTML = `
+                    <p class="col-span-full text-center text-xl text-gray-400 p-8 bg-gray-700/50 rounded-xl">
+                        No games are currently listed in the directory.
+                    </p>
+                `;
+                return;
+            }
+
+            games.forEach(game => {
+                const gameLink = game.url || FULL_LIBRARY_URL; // Use game-specific URL or fallback
+                
+                const cardHtml = `
+                    <div class="game-card bg-gray-700 rounded-xl overflow-hidden shadow-xl border border-gray-600">
+                        <img src="${game.image}" alt="${game.title}" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/ffffff?text=Game+Image';">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-white mb-1">${game.title}</h3>
+                            <p class="text-sm text-gray-400 mb-3">${game.description}</p>
+                            <span class="inline-block bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full">${game.category}</span>
+                            <a href="${gameLink}" target="_blank" class="mt-4 block w-full text-center py-2 text-sm font-semibold text-gray-900 bg-accent rounded-lg hover:bg-yellow-500 transition duration-200">
+                                Play Now
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+        
+        // Removed handleSearch() function
+
+        window.onload = () => {
+             // Initial render of all games on load
+             renderGames(mockGames);
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+    <!-- Header and Navigation -->
+    <header class="bg-gray-900 shadow-xl border-b border-primary/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-start items-center">
+            <!-- Link back to the homepage -->
+            <a href="index.html" class="text-2xl font-extrabold text-primary tracking-wider hover:text-white transition duration-150">
+                Plane's <span class="text-white">Games</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Game Directory Section -->
+    <section class="py-12 bg-gray-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-5xl font-extrabold text-center mb-4 text-white">
+                <span class="text-primary">Unblocked</span> Game Directory
+            </h1>
+            <!-- Increased spacing since search bar is removed -->
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+                Discover a selection of our top games. Click "Play Now" to be redirected to the full collection!
+            </p>
+
+            <!-- Search Bar removed from here -->
+
+            <!-- Game Grid Container -->
+            <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Game cards will be rendered here by JavaScript -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-primary/20 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 Plane's Unblocked Games. Content powered by external sources.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
