@@ -28,7 +28,7 @@
         }
 
         // --- CENTRALIZED GAME URL ---
-        const GAMES_URL = 'https://sites.google.com/view/planemath/games';
+        // The main button now links internally to games.html
         // ----------------------------
 
         // Function to toggle FAQ answers
@@ -44,7 +44,9 @@
         window.addEventListener('load', () => {
             const gameButton = document.getElementById('main-game-link');
             if (gameButton) {
-                gameButton.href = GAMES_URL;
+                // Link is updated to point to the local file in the GitHub Pages repo
+                gameButton.href = 'games.html';
+                gameButton.target = '_self'; 
             }
         });
     </script>
@@ -60,8 +62,8 @@
             <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Your secure and reliable source for thousands of games, unblocked and ready to play anywhere. Click below to dive right into the action!
             </p>
-            <!-- Link to redirect to the external games site -->
-            <a id="main-game-link" href="#" target="_blank" class="inline-block px-10 py-4 text-lg font-bold text-gray-900 bg-accent rounded-full shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:scale-105">
+            <!-- Link updated to point to the games.html page on the GitHub site -->
+            <a id="main-game-link" href="games.html" class="inline-block px-10 py-4 text-lg font-bold text-gray-900 bg-accent rounded-full shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:scale-105">
                 Start Playing Now!
             </a>
         </div>
