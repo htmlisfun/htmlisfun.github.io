@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Slope - Plane's Unblocked Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1f2937; /* Dark background */
+            /* Ensure the body and html take up the full viewport height */
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars, the game should be fullscreen */
+        }
+        #game-container {
+            /* Flex layout to manage header and iframe */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #game-frame {
+            /* Iframe takes up all remaining space */
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6',
+                        'accent': '#facc15',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header Bar with Navigation -->
+        <header class="bg-gray-900 shadow-xl border-b border-primary/20 p-3 flex justify-between items-center z-10">
+            <h1 class="text-xl font-extrabold text-white">
+                <span class="text-accent">NOW PLAYING:</span> Slope
+            </h1>
+            <a href="games.html" class="px-4 py-2 text-sm font-semibold text-gray-900 bg-primary rounded-lg hover:bg-blue-600 transition duration-200 shadow-lg">
+                &larr; Back to Directory
+            </a>
+        </header>
+
+        <!-- Game Iframe -->
+        <!-- 
+            IMPORTANT: Replace the 'src' value below with the actual external URL for the game.
+            This URL for Slope is the one provided in your initial data.
+        -->
+        <iframe 
+            id="game-frame" 
+            src="https://ultimatemen.github.io/games/slo/index.html" 
+            allowfullscreen 
+            scrolling="no" 
+            sandbox="allow-scripts allow-same-origin allow-presentation allow-pointer-lock" 
+            title="Embedded Game: Slope"
+        ></iframe>
+
+    </div>
+</body>
+</html>
